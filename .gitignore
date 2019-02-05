@@ -59,3 +59,10 @@ typings/
 
 # next.js build output
 .next
+
+# ReasonML Projects
+.DS_Store
+.merlin
+.bsb.lock
+packages/**/lib/bs
+*.bs.js

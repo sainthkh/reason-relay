@@ -1,8 +1,7 @@
 {
   "name": "@reason-relay/monorepo",
   "version": "0.1.0",
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [
     "BuckleScript"
   ],
