@@ -1,0 +1,8 @@
+type Greeting {
+    id: ID!
+    message: String!
+}
+
+type Query {
+    hello(time: String): Greeting
+}

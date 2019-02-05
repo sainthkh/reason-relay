@@ -75,3 +75,5 @@ build/
 
 .pnp/
 .pnp.js
+
+__generated__
