@@ -1,5 +1,5 @@
 {
-  "name": "reason-relay",
+  "name": "react-template",
   "reason": {
     "react-jsx": 2
   },
@@ -14,6 +14,8 @@
   "suffix": ".bs.js",
   "namespace": true,
   "bs-dependencies": [
+    "bs-fetch",
+    "reason-relay",
     "reason-react"
   ],
   "refmt": 3

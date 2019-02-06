@@ -65,6 +65,8 @@ typings/
 .merlin
 .bsb.lock
 packages/**/lib/bs
+packages/**/lib/ocaml
+examples/**/lib/bs
 *.bs.js
 build/
 
