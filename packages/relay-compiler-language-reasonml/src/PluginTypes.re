@@ -6,12 +6,12 @@ type sourceLocation = {
 
 [@bs.deriving abstract]
 type graphQLTag = {
-  keyName: Js.Nullable.t(string),
+  keyName: string,
   template: string,
   sourceLocationOffset: sourceLocation,
 };
 
-type graphQLTagFinder = (string, string) => array(graphQLTag);
+type graphQLTagFinder = (string) => array(graphQLTag);
 
 [@bs.deriving abstract]
 type typeGeneratorObj = {

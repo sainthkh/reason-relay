@@ -4,7 +4,7 @@
   "scripts": {
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
-    "where": "bsb -where",
+    "test": "jest",
     "clean": "bsb -clean-world"
   },
   "keywords": [
@@ -14,6 +14,7 @@
   "license": "MIT",
   "devDependencies": {
     "@glennsl/bs-jest": "^0.4.7",
-    "bs-platform": "^4.0.18"
+    "bs-platform": "^4.0.18",
+    "jest": "^24.1.0"
   }
 }
