@@ -1,7 +1,5 @@
 open ReasonRelay;
 
-let query = [%raw {| require("./__generated__/AppQuery.graphql") |}];
-
 let component = ReasonReact.statelessComponent("App")
 
 let make = (_children) => {
@@ -10,7 +8,7 @@ let make = (_children) => {
   render: _self => {
     <QueryRenderer
       environment = Env.environment
-      query
+      query=AppQuery.query
       variables = Js.Json.object_(Js.Dict.empty())
       render = {(renderProps) => {
         let props = renderProps->QueryRenderer.propsGet;
