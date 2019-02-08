@@ -1,0 +1,1 @@
+module QueryRenderer = RR__QueryRenderer;

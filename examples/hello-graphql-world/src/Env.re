@@ -1,4 +1,4 @@
-open ReasonRelay.RelayRuntime;
+open RelayRuntime;
 
 let fetchQuery: Network.fetchQuery = operation => {
   let payload = Js.Dict.empty();
