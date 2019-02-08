@@ -10,7 +10,7 @@ type codePoint = {
 
 
 let find: graphQLTagFinder = text => {
-  let re = [%raw "/\[%graphql\s+{\|([\s\S]*)\|}\]/g"]
+  let re = [%raw "/graphql\({\|([\s\S]*)\|}\)/g"]
   
   switch(re |> Js.Re.exec(text)) {
   | None => [||]

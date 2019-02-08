@@ -13,13 +13,13 @@ describe("FingGraphQLTags", () => {
 let queryRenderer = {j|
 <QueryRenderer
   environment = Env.environment
-  query=[%graphql {|
+  query=graphql({|
     query AppQuery {
       hello {
         message
       }
     }
-  |}]
+  |})
   variables = Js.Json.object_(Js.Dict.empty())
   render = {(renderProps) => {
     let props = renderProps->QueryRenderer.propsGet;
