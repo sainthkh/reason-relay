@@ -1,0 +1,22 @@
+{
+  "name": "babel-plugin-reason-relay",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "babel ./__fixture__/example/code.js -d ./lib/babel",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "ast-pretty-print": "^2.0.1",
+    "babel-plugin-tester": "^5.5.2",
+    "jest": "^24.1.0"
+  }
+}

@@ -9,14 +9,14 @@ type renderProps = {
 [@bs.deriving abstract]
 type jsProps = {
   environment: RelayRuntime.Environment.t,
-  query: Js.Json.t,
+  query: ReasonRelayTypes.compiledGraphql,
   variables: Js.Json.t,
   render: renderProps => ReasonReact.reactElement
 };
 
 let make = (
   ~environment: RelayRuntime.Environment.t,
-  ~query: Js.Json.t,
+  ~query: ReasonRelayTypes.compiledGraphql,
   ~variables: Js.Json.t,
   ~render: renderProps => ReasonReact.reactElement,
   children

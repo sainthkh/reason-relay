@@ -8,7 +8,13 @@ let make = (_children) => {
   render: _self => {
     <QueryRenderer
       environment = Env.environment
-      query=AppQuery.query
+      query=graphql({|
+        query AppQuery {
+          hello {
+            message
+          }
+        }
+      |})
       variables = Js.Json.object_(Js.Dict.empty())
       render = {(renderProps) => {
         let props = renderProps->QueryRenderer.propsGet;

@@ -24,18 +24,17 @@ function fetchQuery(operation, variables) {
 const modernEnvironment = new Environment({
   network: Network.create(fetchQuery),
   store: new Store(new RecordSource()),
-});//*/
+});
 
 export default class App extends React.Component {
   render() {
     return <QueryRenderer
       environment={environment}
-      /*
       query={graphql`
         query AppQuery {
           hello{message}
         }
-      `}//*/
+      `}
       query={gen}
       variables={{}}
       render={({error, props}) => {
@@ -48,4 +47,4 @@ export default class App extends React.Component {
       }}
     />
   }
-}
+}//*/

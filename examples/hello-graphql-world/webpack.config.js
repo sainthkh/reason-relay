@@ -11,14 +11,6 @@ module.exports = {
         exclude: /\/node_modules\//,
         use: {
           loader: 'babel-loader',
-          options: {
-            plugins: [
-              "relay",
-              //"@babel/plugin-transform-runtime",
-              "@babel/plugin-proposal-class-properties"
-            ],
-            presets: ["@babel/preset-react", "@babel/preset-env"],
-          },
         },
       },
     ],
