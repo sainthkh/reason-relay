@@ -1,11 +1,14 @@
 open PluginTypes;
 
-let exports = relayCompilerPlugin(
-  ~inputExtensions=[|".re"|],
-  ~outputExtension=".re",
+let default = () => relayCompilerPlugin(
+  ~inputExtensions=[|"re"|],
+  ~outputExtension="js",
   ~findGraphQLTags=GraphQLTagFinder.find,
   ~typeGenerator=typeGeneratorObj(
-    ~generate=() => "",
+    ~generate=(node) => {
+      ""
+    },
+    ~transforms= [||],
   ),
-  ~formatModule=() => "",
+  ~formatModule=FormatModule.format,
 );

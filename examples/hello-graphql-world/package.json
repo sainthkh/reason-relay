@@ -7,7 +7,7 @@
     "start": "bsb -make-world -w",
     "build": "babel src -d lib/babel",
     "clean": "bsb -clean-world",
-    "relay": "relay-compiler --src ./src --schema ./data/schema.graphql",
+    "relay": "relay-compiler --src ./src --schema ./data/schema.graphql --language reasonml",
     "server": "node ./src/server.js",
     "serve": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -44,6 +44,7 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.1.0",
     "relay-compiler": "^2.0.0",
+    "relay-compiler-language-reasonml": "^0.1.0",
     "webpack": "^4.29.1",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"

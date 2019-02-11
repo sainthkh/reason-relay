@@ -1,7 +1,9 @@
 {
   "name": "@reason-relay/monorepo",
   "version": "0.1.0",
-  "scripts": {},
+  "scripts": {
+    "copy-compiler": "cmd.exe /c mklink /J .\\node_modules\\relay-compiler-language-reasonml .\\packages\\relay-compiler-language-reasonml"
+  },
   "keywords": [
     "BuckleScript"
   ],

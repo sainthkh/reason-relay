@@ -13,12 +13,25 @@ type graphQLTag = {
 
 type graphQLTagFinder = (string) => array(graphQLTag);
 
+[@bs.deriving abstract] 
+type iTransform;
+
+[@bs.deriving abstract]
+type node;
+
 [@bs.deriving abstract]
 type typeGeneratorObj = {
-  generate: unit => string,
+  generate: node => string,
+  transforms: array(iTransform),
 };
 
-type formatModuleFunc = unit => string;
+[@bs.deriving abstract]
+type formatArgs = {
+  concreteText: string,
+  sourceHash: string,
+};
+
+type formatModuleFunc = formatArgs => string;
 
 [@bs.deriving abstract]
 type relayCompilerPlugin = {
