@@ -2,7 +2,6 @@
   "name": "@reason-relay/monorepo",
   "version": "0.1.0",
   "scripts": {
-    "copy-compiler": "cmd.exe /c mklink /J .\\node_modules\\relay-compiler-language-reasonml .\\packages\\relay-compiler-language-reasonml"
   },
   "keywords": [
     "BuckleScript"
@@ -22,6 +21,7 @@
     "html-webpack-plugin": "^3.2.0",
     "lerna": "^3.10.7",
     "relay-compiler": "^2.0.0",
+    "relay-compiler-language-reasonml": "file:./packages/relay-compiler-language-reasonml",
     "webpack": "^4.29.1",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
