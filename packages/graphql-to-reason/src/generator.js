@@ -7,9 +7,19 @@ function generateTypeListFromSchema(ast) {
     if (kind == "ObjectTypeDefinition") {
       let name = definition.name.value;
       let fields = definition.fields.map(field => {
-        return {
-          name: field.name.value, 
-          type: field.type.type.name.value,
+        switch(field.type.kind) {
+        case "NamedType": 
+          return {
+            name: field.name.value,
+            type: field.type.name.value,
+            option: true,
+          }
+        case "NonNullType": 
+          return {
+            name: field.name.value, 
+            type: field.type.type.name.value,  
+            option: false,
+          }
         }
       })
 
@@ -40,7 +50,7 @@ function generateReasonCode(typeList) {
 type ${name} = {
 ${
   type.fields.map(field => {
-    return `  ${field.name}: ${decodeTypeName(field.type)},`
+    return `  ${field.name}: ${decodeTypeName(field)},`
   }).join('\n')
 }
 }
@@ -60,7 +70,7 @@ function handleRootNames(name) {
   return rootName ? rootName : name;
 }
 
-function decodeTypeName(name) {
+function decodeTypeName(field) {
   let typeNames = {
     "ID": "string",
     "String": "string",
@@ -69,9 +79,10 @@ function decodeTypeName(name) {
     "Float": "float",
   };
 
-  let typeName = typeNames[name];
+  let typeName = typeNames[field.type];
+  typeName = typeName ? typeName : lowerTheFirstCharacter(field.type);
 
-  return typeName ? typeName : lowerTheFirstCharacter(name);
+  return field.option? `option(${typeName})` : typeName;
 }
 
 function lowerTheFirstCharacter(name) {
