@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const {buildASTSchema, parse} = require('graphql');
+const {parse} = require('graphql');
 const {getDirectories} = require('../test-util');
 const fixtures = getDirectories(path.join(__dirname, '../__fixture__/schema'));
 
@@ -13,10 +13,15 @@ describe(`schema tests`, () => {
     let schema = parse(fs.readFileSync(schemaPath, 'utf8'));
 
     let result = schemaToReason(schema);
-    let reason = fs.readFileSync(path.join(fixture, 'Types.re')).toString();
+    let reason = fs.readFileSync(path.join(fixture, 'SchemaTypes.re')).toString();
+    let codec = fs.readFileSync(path.join(fixture, 'SchemaTypes.codec.js')).toString();
 
-    test(`${path.basename(fixture)} test`, () => {
+    test(`${path.basename(fixture)} reason code`, () => {
       expect(result.reason).toBe(reason);
+    })
+
+    test.skip(`${path.basename(fixture)} codec code`, () => {
+      expect(result.codec).toBe(codec);
     })
   })
 })
