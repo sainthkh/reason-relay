@@ -1,11 +1,11 @@
 const fs = require('fs-extra');
 const path = require('path');
-const {buildSchema} = require('graphql');
+const {parse} = require('graphql');
 const {schemaToReason} = require('graphql-to-reason');
 
 exports.makeSchemaTypes = function (schemaPath) {
   let code = fs.readFileSync(schemaPath).toString();
-  let ast = buildSchema(code);
+  let ast = parse(code);
   let {reason, codec} = schemaToReason(ast);
 
   let dir = './src/__reason-relay__'
