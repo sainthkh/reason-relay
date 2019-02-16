@@ -16,8 +16,15 @@ describe(`schema tests`, () => {
     let reason = fs.readFileSync(path.join(fixture, 'SchemaTypes.re')).toString();
     let codec = fs.readFileSync(path.join(fixture, 'SchemaTypes.codec.js')).toString();
 
+    let normalizeNewline = code =>
+      code
+        .replace(/\r\n/g, '\n') 
+        .replace(/\r/g, '\n');
+
     test(`${path.basename(fixture)} reason code`, () => {
-      expect(result.reason).toBe(reason);
+      let expected = normalizeNewline(result.reason);
+      let received = normalizeNewline(reason);
+      expect(expected).toBe(received);
     })
 
     test.skip(`${path.basename(fixture)} codec code`, () => {
