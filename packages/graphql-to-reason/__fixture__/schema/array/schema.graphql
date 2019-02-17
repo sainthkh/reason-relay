@@ -1,0 +1,6 @@
+type Query {
+  i1: [Int],
+  i2: [Int]!,
+  i3: [Int!],
+  i4: [Int!]!,
+}
