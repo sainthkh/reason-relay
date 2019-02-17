@@ -30,16 +30,29 @@ function generateTypeListFromSchema(ast) {
     }
   });
 
-  let typeList = [];
-  Object.keys(types).forEach(name => {
-    typeList.push(types[name]);
-  })
-
+  let typeList = childTypes(types, types["Query"]);
   return typeList;
 }
 
 function generateTypeListFromQuery(ast) {
   return [];
+}
+
+function childTypes(types, type) {
+  let typeList = []
+  type.fields.reverse().forEach(field => {
+    if(!isScalar(field.type)){
+      typeList = childTypes(types, types[field.type]).concat(typeList);
+    }
+  });
+  type.fields.reverse();
+  typeList.push(type);
+  return typeList;
+}
+
+function isScalar(type) {
+  let scalarTypes = ["ID", "String", "Int", "Float", "Boolean"];
+  return scalarTypes.includes(type);
 }
 
 function generateReasonCode(typeList) {
@@ -53,7 +66,7 @@ ${
     return `  ${field.name}: ${decodeTypeName(field)},`
   }).join('\n')
 }
-}
+};
 `.trim();
   }).join('\n\n');
 }

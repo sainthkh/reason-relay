@@ -4,4 +4,4 @@ type queryResponse = {
   married: option(bool),
   age: option(int),
   closeRate: option(float),
-}
+};
