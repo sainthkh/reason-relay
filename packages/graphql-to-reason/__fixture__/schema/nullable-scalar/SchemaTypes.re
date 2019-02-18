@@ -5,3 +5,5 @@ type queryResponse = {
   age: option(int),
   closeRate: option(float),
 };
+
+[@bs.module "./SchemaTypes"]external decodeQueryResponse: Js.Json.t => queryResponse = "decodeQueryResponse";
