@@ -70,7 +70,10 @@ function childTypes(types, type) {
     }
   });
   type.fields.reverse();
-  typeList.push(type);
+  if(!type.inList) {
+    typeList.push(type);
+    type.inList = true;
+  }
   return typeList;
 }
 
