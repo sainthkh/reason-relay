@@ -1,11 +1,11 @@
-exports.decodeB = function (res) {
+var decodeB = function (res) {
   return [
     res.id,
     res.iii,
   ]
 }
 
-exports.decodeA = function (res) {
+var decodeA = function (res) {
   return [
     res.id,
     res.ii,
@@ -14,14 +14,14 @@ exports.decodeA = function (res) {
   ]
 }
 
-exports.decodeC = function (res) {
+var decodeC = function (res) {
   return [
     res.id,
     res.ss,
   ]
 }
 
-exports.decodeQueryResponse = function (res) {
+var decodeQueryResponse = function (res) {
   return [
     res.i,
     res.a ? decodeA(res.a) : undefined,
@@ -29,3 +29,8 @@ exports.decodeQueryResponse = function (res) {
     decodeC(res.c),
   ]
 }
+
+exports.decodeB = decodeB;
+exports.decodeA = decodeA;
+exports.decodeC = decodeC;
+exports.decodeQueryResponse = decodeQueryResponse;

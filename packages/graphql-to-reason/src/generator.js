@@ -143,13 +143,19 @@ function lowerTheFirstCharacter(name) {
 }
 
 function generateCodec(typeList) {
-  return typeList.map(type => {
+  let exportedNames = [];
+
+  let functions = typeList.map(type => {
     let name = handleSpecialTypeNames(type.name);
+    let functionName = `decode${name}`;
+    exportedNames.push(functionName);
+    
     return `
-exports.decode${name} = function (res) {
+var ${functionName} = function (res) {
   return [
 ${type.fields.map(field => {
   let varname = `res.${field.name}`;
+
   if(isScalar(field.type)) {
     return `    ${varname},`;
   } else {
@@ -162,6 +168,14 @@ ${type.fields.map(field => {
   ]
 }`.trim();
   }).join('\n\n');
+
+  return `
+${functions}
+
+${exportedNames.map(name => 
+  `exports.${name} = ${name};`
+).join('\n')}
+`.trim();
 }
 
 function handleSpecialTypeNames(name) {

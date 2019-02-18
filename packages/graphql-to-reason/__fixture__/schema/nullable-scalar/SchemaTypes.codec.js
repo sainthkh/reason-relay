@@ -1,4 +1,4 @@
-exports.decodeQueryResponse = function (res) {
+var decodeQueryResponse = function (res) {
   return [
     res.id,
     res.name,
@@ -7,3 +7,5 @@ exports.decodeQueryResponse = function (res) {
     res.closeRate,
   ]
 }
+
+exports.decodeQueryResponse = decodeQueryResponse;
