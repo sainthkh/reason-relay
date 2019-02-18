@@ -9,7 +9,7 @@ const {schemaToReason} = require('../src/generator');
 
 describe(`schema tests`, () => {
   fixtures.forEach(fixture => {
-    let tests = ['non-nullable-scalar', 'nullable-scalar'];
+    let tests = ['non-nullable-scalar', 'nullable-scalar', 'object'];
     if(!tests.includes(path.basename(fixture))) return;
 
     let schemaPath = path.join(fixture, 'schema.graphql');

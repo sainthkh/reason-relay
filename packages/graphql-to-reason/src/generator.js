@@ -145,9 +145,17 @@ function generateCodec(typeList) {
     return `
 exports.decode${name} = function (res) {
   return [
-${type.fields.map(field => 
-`    res.${field.name},`
-).join('\n')}
+${type.fields.map(field => {
+  let varname = `res.${field.name}`;
+  if(isScalar(field.type)) {
+    return `    ${varname},`;
+  } else {
+    let decoderName = `decode${field.type}`;
+    return field.option
+      ? `    ${varname} ? ${decoderName}(${varname}) : undefined,`
+      : `    ${decoderName}(${varname}),`;
+  }
+}).join('\n')}
   ]
 }`.trim();
   }).join('\n\n');
