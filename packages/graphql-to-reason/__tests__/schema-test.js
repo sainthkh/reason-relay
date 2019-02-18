@@ -9,6 +9,9 @@ const {schemaToReason} = require('../src/generator');
 
 describe(`schema tests`, () => {
   fixtures.forEach(fixture => {
+    let tests = ['non-nullable-scalar'];
+    if(!tests.includes(path.basename(fixture))) return;
+
     let schemaPath = path.join(fixture, 'schema.graphql');
     let schema = parse(fs.readFileSync(schemaPath, 'utf8'));
 
@@ -27,8 +30,10 @@ describe(`schema tests`, () => {
       expect(expected).toBe(received);
     })
 
-    test.skip(`${path.basename(fixture)} codec code`, () => {
-      expect(result.codec).toBe(codec);
+    test(`${path.basename(fixture)} codec code`, () => {
+      let expected = normalizeNewline(result.codec);
+      let received = normalizeNewline(codec);
+      expect(expected).toBe(received);
     })
   })
 })

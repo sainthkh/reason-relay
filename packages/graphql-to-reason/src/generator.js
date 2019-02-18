@@ -80,7 +80,7 @@ function isScalar(type) {
 }
 
 function generateReasonCode(typeList) {
-  return typeList.map(type => {
+  let typeCode = typeList.map(type => {
     let name = lowerTheFirstCharacter(type.name);
     name = handleRootNames(name);
     return `
@@ -93,6 +93,12 @@ ${
 };
 `.trim();
   }).join('\n\n');
+
+  return `
+${typeCode}
+
+[@bs.module "./SchemaTypes"]external decodeQueryResponse: Js.Json.t => queryResponse = "decodeQueryResponse";
+`.trim();
 }
 
 function handleRootNames(name) {
@@ -134,7 +140,28 @@ function lowerTheFirstCharacter(name) {
 }
 
 function generateCodec(typeList) {
-  return "codec";
+  return typeList.map(type => {
+    let name = handleSpecialTypeNames(type.name);
+    return `
+exports.decode${name} = function (res) {
+  return [
+${type.fields.map(field => 
+`    res.${field.name},`
+).join('\n')}
+  ]
+}`.trim();
+  }).join('\n\n');
+}
+
+function handleSpecialTypeNames(name) {
+  let names = {
+    "Query": "QueryResponse",
+    "Mutation": "MutationResponse",
+    "Subscription": "SubscriptionResponse",
+  };
+
+  let typeName = names[name];
+  return typeName ? typeName : name;
 }
 
 exports.schemaToReason = function(ast) {
