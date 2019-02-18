@@ -7,6 +7,20 @@ const getDirectories = source =>
   .map(name => path.join(source, name))
   .filter(isDirectory)
 
+let normalizeNewline = code =>
+  code
+    .replace(/\r\n/g, '\n') 
+    .replace(/\r/g, '\n');
+
+const compareTexts = (name, expected, received) => {
+  test(name, () => {
+    let e = normalizeNewline(expected);
+    let r = normalizeNewline(received);
+    expect(e).toBe(r);
+  })
+}
+
 module.exports = {
   getDirectories,
+  compareTexts,
 }
