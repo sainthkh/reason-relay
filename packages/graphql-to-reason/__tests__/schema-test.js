@@ -9,8 +9,12 @@ const {schemaToReason} = require('../src/generator');
 
 describe(`schema tests`, () => {
   fixtures.forEach(fixture => {
+    /* 
+    // Code for partial test.
+    // Commented out for later use. 
     let tests = ['non-nullable-scalar', 'nullable-scalar', 'object'];
     if(!tests.includes(path.basename(fixture))) return;
+    //*/
 
     let schemaPath = path.join(fixture, 'schema.graphql');
     let schema = parse(fs.readFileSync(schemaPath, 'utf8'));
