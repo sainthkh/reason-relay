@@ -5,7 +5,7 @@ const {parse} = require('graphql');
 const {getDirectories, compareTexts} = require('../test-util');
 const fixtures = getDirectories(path.join(__dirname, '../__fixture__/schema'));
 
-const {schemaToReason} = require('../src/generator');
+const {schemaToReason} = require('../src/schema');
 
 describe(`schema tests`, () => {
   fixtures.forEach(fixture => {

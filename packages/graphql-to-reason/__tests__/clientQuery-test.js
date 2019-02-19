@@ -11,13 +11,20 @@ const {Parser, convertASTDocuments} = require('relay-compiler')
 
 const {
   queryToReason,
-} = require('../src/generator')
+} = require('../src/client')
 
-const {getDirectories} = require('../test-util');
+const {getDirectories, compareTexts} = require('../test-util');
 const fixtures = getDirectories(path.join(__dirname, '../__fixture__/clientQuery'));
 
 describe(`client query tests`, () => {
   fixtures.forEach(fixture => {
+    
+    // Code for partial test.
+    // Commented out for later use. 
+    let tests = ['non-nullable-scalar', /*'nullable-scalar', 'object'*/];
+    if(!tests.includes(path.basename(fixture))) return;
+    //*/
+
     // The code below is based on the relay-compiler tests. 
     // Check relay-compiler/language/javascript/__tests__/RelayFlowGenerator-test.js
 
@@ -51,8 +58,6 @@ describe(`client query tests`, () => {
 
     let reason = fs.readFileSync(path.join(fixture, 'types.re')).toString();
     
-    test.skip(`${path.basename(fixture)} test`, () => {
-      expect(results[0]).toBe(reason);
-    })
+    compareTexts(`${path.basename(fixture)} test`, results[0], reason);
   })
 })
