@@ -8,7 +8,17 @@ function generateTypeListFromQuery(ast) {
   //console.log(require('ast-pretty-print')(ast));
 
   let types = {};
+  extractType(types, ast);
+
+  let typeList = childTypes(types, types["Query"]);
+  return typeList;
+}
+
+function extractType(types, ast) {
   let fields = ast.selections.map(selection => {
+    if(selection.kind == "LinkedField") {
+      extractType(types, selection);
+    }
     let {option, typeName} = interpretType(selection.type)
     return {
       name: selection.name,
@@ -16,14 +26,12 @@ function generateTypeListFromQuery(ast) {
       option,
     }
   })
-
-  types['' + ast.type] = {
-    name: '' + ast.type,
+  
+  let name = ast.type.name ? ast.type.name : ast.type.ofType.name;
+  types[name] = {
+    name,
     fields,
   }
-
-  let typeList = childTypes(types, types["Query"]);
-  return typeList;
 }
 
 function interpretType(type) {
