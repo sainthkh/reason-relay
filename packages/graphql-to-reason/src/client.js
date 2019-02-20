@@ -43,43 +43,17 @@ function extractType(types, ast, selectionNames) {
 
 function interpretType(type) {
   let typeName = '' + type;
-  if(typeName[typeName.length - 1] == '!') {
-    if(typeName[0] == '[') {
-      let contentOption = typeName[typeName.length - 3] != '!';
-      return {
-        option: false,
-        typeName: typeName.substring(
-          1, 
-          typeName.length - (contentOption ? 2 : 3)
-        ),
-        array: true,
-        contentOption,
-      }
-    } else {
-      // Type!
-      return {
-        option: false,
-        typeName: typeName.substring(0, typeName.length - 1),
-      }
-    }
-  } else {
-    if(typeName[0] == '[') {
-      let contentOption = typeName[typeName.length - 2] != '!';
-      return {
-        option: true,
-        typeName: typeName.substring(
-          1, 
-          typeName.length - (contentOption ? 1 : 2)
-        ),
-        array: true,
-        contentOption,
-      }
-    } else {
-      return {
-        option: true,
-        typeName,
-      }
-    }
+  let option = typeName[typeName.length - 1] != '!';
+  let array = typeName[0] == '[';
+  let contentOption = array
+    ? typeName[typeName.length - (option? 2:3)] != '!'
+    : false;
+  let name = typeName.match(/\[?([A-Za-z0-9_]+)!?\]?!?/)[1];
+  return {
+    option,
+    typeName: name,
+    array,
+    contentOption,
   }
 }
 
