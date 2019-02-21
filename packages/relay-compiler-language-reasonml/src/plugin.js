@@ -3,10 +3,7 @@ module.exports = () => {
     inputExtensions: ["re"],
     outputExtension: "js",
     findGraphQLTags: require('./tagFinder').find,
-    typeGenerator: {
-      generate: () => "",
-      transforms: [],
-    },
+    typeGenerator: require('./typeGenerator'),
     formatModule: require('./format').format,
   }
 }

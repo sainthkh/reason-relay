@@ -8,7 +8,7 @@ exports.makeSchemaTypes = function (schemaPath) {
   let ast = parse(code);
   let {reason, codec} = schemaToReason(ast);
 
-  let dir = './src/__reason-relay__'
+  let dir = './src/.relay'
   fs.ensureDirSync(dir);
   fs.writeFileSync(path.join(dir, 'SchemaTypes.re'), reason);
   fs.writeFileSync(path.join(dir, 'SchemaTypes.codec.js'), codec);

@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "ast-pretty-print": "^2.0.1",
+    "fs-extra": "^7.0.1",
     "graphql-to-reason": "^1.0.0",
     "line-column": "^1.0.2",
     "relay-compiler": "^2.0.0"

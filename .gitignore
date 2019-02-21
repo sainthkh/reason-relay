@@ -81,4 +81,4 @@ build/
 .pnp.js
 
 __generated__
-__reason-relay__
+.relay/
