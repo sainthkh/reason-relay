@@ -1,16 +1,11 @@
-open PluginTypes;
-open Jest;
+const {find} = require('../src/tagFinder');
 
-let find = GraphQLTagFinder.find;
+describe('Find GraphQL tags', () => {
+  it("parses simple file", () => {
+    expect(find("let a = 3.141592; ")).toEqual([]);
+  })
 
-describe("FingGraphQLTags", () => {
-  open Expect;
-
-  test("parse simple file", () => {
-    expect(find("let a = 3.141592; ")) |> toEqual([||])
-  });
-
-let queryRenderer = {j|
+  let queryRenderer = `
 <QueryRenderer
   environment = Env.environment
   query=graphql({|
@@ -39,26 +34,28 @@ let queryRenderer = {j|
     }
   }}
 />
-    |j} -> Js.String.trim
+  `.trim();
 
-  test("parse query in QueryRenderer", () => {
-    expect(find(queryRenderer)[0]->templateGet) 
-      |> toBe({|
+  it("parses query in QueryRenderer", () => {
+    expect(find(queryRenderer)[0].template.trim()).toBe(`
     query AppQuery {
       hello {
         message
       }
     }
-  |});
+    `.trim())
   })
 
-  test("return correct line and column", () => {
-    let loc = find(queryRenderer)[0]->sourceLocationOffsetGet;
-    let line = loc->lineGet;
-    let column = loc->columnGet;
-
-    expect([|line, column|]) |> toEqual([|3, 9|])
+  it("returns correct line and column number", () => {
+    let {line, column} = find(queryRenderer)[0].sourceLocationOffset;
+    expect([line, column]).toEqual([3, 9]);
   })
 
+  it.skip("parses multiple queries in a single file", () => {
 
-});
+  })
+
+  it.skip("proper keyNames are returned with fragment container", () => {
+
+  })
+})
