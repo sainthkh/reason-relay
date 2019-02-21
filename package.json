@@ -2,6 +2,11 @@
   "name": "@reason-relay/monorepo",
   "version": "0.1.0",
   "scripts": {
+    "add": "lerna add",
+    "postadd": "npm run setup",
+    "bootstrap": "lerna bootstrap",
+    "postbootstrap": "npm run setup",
+    "setup": "node scripts/setup.js"
   },
   "keywords": [
     "BuckleScript"
@@ -21,7 +26,6 @@
     "html-webpack-plugin": "^3.2.0",
     "lerna": "^3.10.7",
     "relay-compiler": "^2.0.0",
-    "relay-compiler-language-reasonml": "file:./packages/relay-compiler-language-reasonml",
     "webpack": "^4.29.1",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
