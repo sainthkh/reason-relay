@@ -1,10 +1,15 @@
-type graphqlError = {
-  message: string,
+type location = {
+  line: int,
+  column: int,
 };
 
-let decodeErrors: Js.Json.t => array(graphqlError) = errors => {
-  [||]
-}
+type graphqlError = {
+  locations: array(location),
+  message: string,
+  path: array(string),
+};
+
+[@bs.module "./codec"]external decodeErrors: Js.Json.t => array(graphqlError) = "decodeErrors";
 
 module type QuerySpec = {
   type variablesType;
