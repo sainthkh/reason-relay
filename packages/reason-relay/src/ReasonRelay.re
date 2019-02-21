@@ -1,6 +1,6 @@
 open ReasonRelayTypes;
 
-module QueryRenderer = ReasonRelay__QueryRenderer;
+module MakeQueryRenderer = ReasonRelay__QueryRenderer.MakeQueryRenderer;
 
 [@bs.module "react-relay"] external graphql: string => compiledGraphql = "graphql";
 [@bs.module "react-relay"] external createFragmentContainer: (ReasonReact.reactClassInternal, Js.Json.t) => ReasonReact.reactClass = "createFragmentContainer";
