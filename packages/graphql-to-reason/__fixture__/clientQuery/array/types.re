@@ -28,3 +28,9 @@ type queryResponse = {
   p3: option(array(p3_Person)),
   p4: array(p4_Person),
 };
+
+type variablesType = Js.Dict.t(Js.Json.t);
+let encodeVariables: unit => variablesType = () => Js.Dict.empty();
+
+type schemaQueryResponse = SchemaTypes.queryResponse;
+let decodeResponse = SchemaTypes.decodeQueryResponse;

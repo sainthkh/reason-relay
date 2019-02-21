@@ -23,3 +23,19 @@ type queryResponse = {
   s: option(string),
   c: c_C,
 };
+
+[@bs.deriving abstract]
+type variablesType = {
+  j: int,
+  ss: option(string),
+};
+
+type queryVars = {
+  j: int,
+  ss: option(string),
+};
+
+let encodeVariables: queryVars => variablesType = (vars) => variablesType(~j=vars.j,~ss=vars.ss);
+
+type schemaQueryResponse = SchemaTypes.queryResponse;
+let decodeResponse = SchemaTypes.decodeQueryResponse;
