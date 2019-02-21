@@ -18,16 +18,7 @@ let fetchQuery: Network.fetchQuery = operation => {
       ),
     )
     |> then_(Response.json)
-    |> then_(json => {
-      let result = Js.Json.decodeObject(json)
-        ->Belt.Option.mapWithDefault(Js.Dict.empty(), d => d);
-
-      switch(result->Js.Dict.get("errors")) {
-      | Some(errors) => Js.log(errors)
-      | None => ()
-      }
-      resolve(json)
-    })
+    |> then_(logGraphQLErrors)
   );
 }
 

@@ -48,3 +48,15 @@ module Environment {
 
   [@bs.new] [@bs.module "relay-runtime"] external make: option => t = "Environment";
 }
+
+let logGraphQLErrors: Js.Json.t => Js.Promise.t(Js.Json.t) = json => {
+  let result = Js.Json.decodeObject(json)
+    ->Belt.Option.mapWithDefault(Js.Dict.empty(), d => d);
+
+  switch(result->Js.Dict.get("errors")) {
+  | Some(errors) => Js.log(errors)
+  | None => ()
+  }
+
+  Js.Promise.resolve(json);
+}
