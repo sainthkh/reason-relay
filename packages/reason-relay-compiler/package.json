@@ -18,6 +18,7 @@
     "graphql": "^14.1.1",
     "graphql-to-reason": "^1.0.0",
     "relay-compiler": "^2.0.0",
+    "relay-compiler-language-reasonml": "^0.1.0",
     "yargs": "^13.1.0"
   }
 }
