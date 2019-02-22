@@ -21,12 +21,9 @@ let make = (_children) => {
       render = {(result) => {
         switch(result) {
         | Loading => { ReasonReact.string("Loading...") }
-        | Error(messages) => { ReasonReact.string("Error...") }
+        | Error(_messages) => { ReasonReact.string("Error...") }
         | Data(response) => { 
-          switch(response.hello) {
-          | None => ReasonReact.string("No message") 
-          | Some(hello) => ReasonReact.string(hello.message) 
-          }
+          <MiniTwitterApp />
         }
         }
       }}

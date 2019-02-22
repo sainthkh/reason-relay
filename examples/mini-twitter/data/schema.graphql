@@ -1,8 +1,24 @@
-type Greeting {
-    id: ID!
-    message: String!
+type Query {
+  viewer: User
 }
 
-type Query {
-    hello(time: String): Greeting
+type User {
+  id: ID!
+  messages: MessageConnection
+}
+
+type MessageConnection {
+  edges: [MessageEdge!]
+}
+
+type MessageEdge {
+  cursor: String!
+  node: Message!
+}
+
+type Message {
+  id: ID!
+  name: String!
+  handle: String!
+  time: String!
 }
