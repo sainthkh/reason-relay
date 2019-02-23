@@ -18,10 +18,10 @@ const fixtures = getDirectories(path.join(__dirname, '../__fixture__/clientQuery
 
 describe(`client query tests`, () => {
   fixtures.forEach(fixture => {
-    
+    /*
     // Code for partial test.
     // Commented out for later use. 
-    let tests = ['non-nullable-scalar', /*'nullable-scalar', 'object'*/];
+    let tests = ['non-nullable-scalar', 'nullable-scalar', 'array'];
     if(!tests.includes(path.basename(fixture))) return;
     //*/
 
