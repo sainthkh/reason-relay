@@ -1,6 +1,6 @@
 # reason-relay
 
-This project has been abandoned. If you're finding ReasonML GraphQL client, I recommend [bs-apollo-client](https://github.com/sainthkh/bs-apollo-client) or [reason-apollo](https://github.com/apollographql/reason-apollo). 
+This project has been abandoned. If you're finding ReasonML GraphQL client, I recommend [apollo-reasonml](https://github.com/sainthkh/apollo-reasonml) or [reason-apollo](https://github.com/apollographql/reason-apollo). 
 
 ## Why did you give up?
 
